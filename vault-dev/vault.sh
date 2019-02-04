@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
 
-apt-get update
-apt-get install --no-install-recommends -y curl wget unzip
+which vault &>/dev/null || {
+  apt-get update
+  apt-get install --no-install-recommends -y curl wget unzip
 
-#always use highest release
-VAULT=$(curl -sL https://releases.hashicorp.com/vault/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
+  #always use highest release
+  VAULT=$(curl -sL https://releases.hashicorp.com/vault/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
 
-# arch
-if [[ "`uname -m`" =~ "arm" ]]; then
-  ARCH=arm
-else
-  ARCH=amd64
-fi
+  # arch
+  if [[ "`uname -m`" =~ "arm" ]]; then
+    ARCH=arm
+  else
+    ARCH=amd64
+  fi
 
-wget -O /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_${ARCH}.zip
-unzip -o -d /usr/local/bin /tmp/vault.zip
+  wget -O /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_${ARCH}.zip
+  unzip -o -d /usr/local/bin /tmp/vault.zip
+}
 
 mkdir -p /etc/vault.d
 #download server configuration
