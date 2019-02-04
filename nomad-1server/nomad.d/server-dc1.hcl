@@ -1,4 +1,4 @@
-bind_addr = "0.0.0.0"
+bind_addr = "{{ GetInterfaceIP \"enp0s8\" }}"
 data_dir = "/var/lib/nomad"
 
 advertise {
