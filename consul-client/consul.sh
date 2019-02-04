@@ -22,8 +22,15 @@ which consul &>/dev/null || {
 
 # create dir and copy server.hcl for consul
 mkdir -p /etc/consul.d
-curl -o /etc/consul.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.d/client-dc1.hcl
 curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.service
+
+#fix DC
+if [ "${DC}" ]; then
+  curl -o /etc/consul.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.d/client-dc2.hcl
+  sed -i "s/dc2/${DC}/g" /etc/consul.d/*.hcl
+else
+  curl -o /etc/consul.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.d/client-dc1.hcl
+fi
 
 # adjust interfce if not named enp0s8
 if [ "${IFACE}" ] && [ -f /etc/consul.d/client.hcl ]; then
