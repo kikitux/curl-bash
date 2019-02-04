@@ -4,7 +4,7 @@ apt-get update
 apt-get install --no-install-recommends -y curl wget unzip
 
 #always use highest release
-VAULT=$(curl -sL https://releases.hashicorp.com/vault/index.json | jq -r '.versions[].version' | sort -V | grep -v 'beta|rc|alpha' | tail -n1)
+VAULT=$(curl -sL https://releases.hashicorp.com/vault/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
 
 # arch
 if [[ "`uname -m`" =~ "arm" ]]; then
