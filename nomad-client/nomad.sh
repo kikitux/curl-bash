@@ -30,6 +30,10 @@ mkdir -p /etc/nomad.d
 curl -o /etc/nomad.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.d/client-dc1.hcl
 curl -o /etc/systemd/system/nomad.service https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.service
 
+if [ "${DC}" ] && [ "${DC}" != "dc1" ]; then
+  sed -i "s/dc1/${DC}/g" /etc/nomad.d/*.hcl
+fi
+
 # adjust interfce if not named enp0s8
 if [ "${IFACE}" ]; then
   sed -i "s/enp0s8/${IFACE}/g" /etc/nomad.d/*.hcl

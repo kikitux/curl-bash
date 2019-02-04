@@ -1,3 +1,5 @@
+datacenter = "dc1"
+
 client {
   enabled = true
   server_join {
