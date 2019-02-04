@@ -6,9 +6,6 @@
   "bind_addr": "{{ GetInterfaceIP \"enp0s8\" }}",
   "data_dir": "/usr/local/consul",
   "bootstrap_expect": 1,
-  "retry_join": [
-    "192.168.66.20"
-  ],
   "retry_join_wan": [
     "192.168.56.20"
   ]
