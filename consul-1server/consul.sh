@@ -27,7 +27,7 @@ curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/kik
 
 # adjust interfce if not named enp0s8
 if [ "${IFACE}" ] && [ -f /etc/consul.d/server.hcl ]; then
-  sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/server.hcl
+  sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/*.hcl
 fi
 
 systemctl enable consul.service
