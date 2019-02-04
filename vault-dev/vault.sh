@@ -18,8 +18,8 @@ wget -O /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT}/vault_${VAU
 unzip -o -d /usr/local/bin /tmp/vault.zip
 
 mkdir -p /etc/vault.d
-curl -sL -O /etc/vault.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.service
-curl -sL -O /etc/conf/vault.service/etc/systemd/system https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.d/server.hcl
+curl -sL -O /etc/vault.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.d/server.hcl
+curl -sL -O /etc/systemd/system/vault.service https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.service
 
 systemctl enable vault.service
 systemctl start vault.service 2>/dev/null
