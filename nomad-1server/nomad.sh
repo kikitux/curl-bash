@@ -21,10 +21,16 @@ which nomad &>/dev/null || {
 # create dir and copy server.hcl for nomad
 mkdir -p /etc/nomad.d
 curl -o /etc/systemd/system/nomad.service https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.service
-curl -o /etc/nomad.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.d/server-dc1.hcl
 
 if [ "${DC}" ] && [ "${DC}" != "dc1" ]; then
+  curl -o /etc/nomad.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.d/server-dc2.hcl
   sed -i "s/dc1/${DC}/g" /etc/nomad.d/*.hcl
+else
+  curl -o /etc/nomad.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.d/server-dc1.hcl
+fi
+
+if [ "${WAN_JOIN}" ] ; then
+  sed -i "s/192.168.56.20/${WAN_JOIN}/g" /etc/nomad.d/*.hcl
 fi
 
 # adjust interfce if not named enp0s8
