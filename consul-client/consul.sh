@@ -24,7 +24,7 @@ curl -o /etc/consul.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-
 curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.service
 
 # adjust interfce if not named enp0s8
-if [ "${IFACE}" != "enp0s8" ] && [ -f /etc/consul.d/client.hcl ]; then
+if [ "${IFACE}" ] && [ -f /etc/consul.d/client.hcl ]; then
   sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/client.hcl
 fi
 
