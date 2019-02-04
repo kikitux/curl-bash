@@ -39,5 +39,9 @@ if [ "${IFACE}" ]; then
   sed -i "s/enp0s8/${IFACE}/g" /etc/nomad.d/*.hcl
 fi
 
+if [ "${LAN_JOIN}" ] ; then
+  sed -i "s/192.168.56.20/${LAN_JOIN}/g" /etc/nomad.d/*.hcl
+fi
+
 systemctl enable nomad.service
 systemctl start nomad.service

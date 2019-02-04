@@ -34,7 +34,6 @@ if [ "${LAN_JOIN}" ] ; then
   sed -i "s/192.168.56.20/${LAN_JOIN}/g" /etc/consul.d/*.hcl
 fi
 
-
 # adjust interfce if not named enp0s8
 if [ "${IFACE}" ] && [ -f /etc/consul.d/client.hcl ]; then
   sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/*.hcl
