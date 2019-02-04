@@ -24,7 +24,7 @@ which consul &>/dev/null || {
 mkdir -p /etc/consul.d
 curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.service
 
-if [ "${DC}" ]; then
+if [ "${DC}" ] && [ "${DC}" != "dc1" ]; then
   curl -o /etc/consul.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.d/server-dc2.hcl
   sed -i "s/dc2/${DC}/g" /etc/consul.d/*.hcl
 else

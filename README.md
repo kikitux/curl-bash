@@ -24,7 +24,6 @@ config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/cu
 
 input:
 - variable `IFACE` the interface to bind
-- variable `CONSUL_JOIN` comma separated server ip to join
 
 shell
 ```bash
