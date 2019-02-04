@@ -20,12 +20,12 @@ unzip -o -d /usr/local/bin /tmp/consul.zip
 
 # create dir and copy server.hcl for consul
 mkdir -p /etc/consul.d
-curl -o /etc/consul.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.d/server-dc1.hcl
+curl -o /etc/consul.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.d/client-dc1.hcl
 curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.service
 
 # adjust interfce if not named enp0s8
-if [ "${IFACE}" != "enp0s8" && [ -f /etc/consul.d/server.hcl ]; then
-  sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/server.hcl
+if [ "${IFACE}" != "enp0s8" ] && [ -f /etc/consul.d/client.hcl ]; then
+  sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/client.hcl
 fi
 
 systemctl enable consul.service
