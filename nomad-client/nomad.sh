@@ -35,11 +35,5 @@ if [ "${IFACE}" ]; then
   sed -i "s/enp0s8/${IFACE}/g" /etc/nomad.d/*.hcl
 fi
 
-# adjust retry-join
-if [ "${NOMAD_JOIN}" ] && [ -f /etc/nomad.d/client.hcl ]; then
-  list=$(printf '"%s"\n' "${NOMAD_JOIN//,/\",\"}")
-  sed -i "s/\"192.168.56.20\"/${list}/g" /etc/nomad.d/client.hcl
-fi
-
 systemctl enable nomad.service
 systemctl start nomad.service
