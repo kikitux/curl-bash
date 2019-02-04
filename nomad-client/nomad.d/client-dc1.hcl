@@ -11,11 +11,13 @@ client {
   }
 }
 
-bind_addr = "{{ GetInterfaceIP \"enp0s8\" }}"
+bind_addr = "0.0.0.0"
 data_dir = "/var/lib/nomad"
 
 advertise {
   # This should be the IP of THIS MACHINE and must be routable by every node
   # in your cluster
+  http = "{{ GetInterfaceIP \"enp0s8\" }}"
   rpc = "{{ GetInterfaceIP \"enp0s8\" }}"
+  serf = "{{ GetInterfaceIP \"enp0s8\" }}"
 }
