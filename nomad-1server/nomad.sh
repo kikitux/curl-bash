@@ -24,7 +24,7 @@ curl -o /etc/systemd/system/nomad.service https://raw.githubusercontent.com/kiki
 
 if [ "${DC}" ] && [ "${DC}" != "dc1" ]; then
   curl -o /etc/nomad.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.d/server-dc2.hcl
-  sed -i "s/dc1/${DC}/g" /etc/nomad.d/*.hcl
+  sed -i "s/dc2/${DC}/g" /etc/nomad.d/*.hcl
 else
   curl -o /etc/nomad.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.d/server-dc1.hcl
 fi
