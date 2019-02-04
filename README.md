@@ -5,10 +5,14 @@
 ### consul-1server
 [consul-1server/consul.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh)
 
+input:
+- variable `IFACE` the interface to bind
+
 shell
 ```bash
 curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh | bash 
 ```
+
 
 vagrant
 ```ruby

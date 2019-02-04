@@ -23,5 +23,10 @@ mkdir -p /etc/consul.d
 curl -o /etc/consul.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.d/server-dc1.hcl
 curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.service
 
+# adjust interfce if not named enp0s8
+if [ "${IFACE}" != "enp0s8" && [ -f /etc/consul.d/server.hcl ]; then
+  sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/server.hcl
+fi
+
 systemctl enable consul.service
 systemctl start consul.service
