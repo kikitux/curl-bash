@@ -7,7 +7,7 @@ advertise {
 
 server {
   enabled = true
-  bootstrap_expect = 3
+  bootstrap_expect = 1
   server_join {
     retry_max = 5
     retry_interval = "15s"
