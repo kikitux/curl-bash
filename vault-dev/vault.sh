@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 apt-get update
 apt-get install --no-install-recommends -y curl wget unzip
@@ -25,3 +24,5 @@ curl -sL -o /etc/systemd/system/vault.service https://raw.githubusercontent.com/
 
 systemctl enable vault.service
 systemctl start vault.service 2>/dev/null
+
+echo "vault-dev installed"
