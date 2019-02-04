@@ -2,7 +2,7 @@
 
 which vault &>/dev/null || {
   apt-get update
-  apt-get install --no-install-recommends -y curl wget unzip
+  apt-get install --no-install-recommends -y curl wget unzip jq
 
   #always use highest release
   VAULT=$(curl -sL https://releases.hashicorp.com/vault/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)

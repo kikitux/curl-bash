@@ -2,7 +2,7 @@
 
 which consul &>/dev/null || {
   apt-get update
-  apt-get install --no-install-recommends -y wget unzip dnsmasq
+  apt-get install --no-install-recommends -y curl wget unzip dnsmasq jq
 
   CONSUL=$(curl -sL https://releases.hashicorp.com/consul/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
 
