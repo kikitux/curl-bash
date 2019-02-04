@@ -1,5 +1,20 @@
 # curl-bash
 
+## consul
+
+### consul-1server
+[consul-1server/consul.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh)
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh | bash 
+```
+
+vagrant
+```ruby
+config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
+```
+
 ## vault
 
 ### vault-dev
