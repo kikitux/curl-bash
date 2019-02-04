@@ -15,7 +15,7 @@ else
 fi
 
 wget -O /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_${ARCH}.zip
-unzip -d /usr/local/bin /tmp/vault.zip
+unzip -o -d /usr/local/bin /tmp/vault.zip
 
 mkdir -p /etc/vault.d
 curl -sL -O /etc/vault.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.service
