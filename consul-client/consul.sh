@@ -28,5 +28,11 @@ if [ "${IFACE}" ] && [ -f /etc/consul.d/client.hcl ]; then
   sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/client.hcl
 fi
 
+# adjust retry-join
+if [ "${CONSUL_JOIN}" ] && [ -f /etc/consul.d/client.hcl ]; then
+  list=$(printf '"%s"\n' "${CONSUL_JOIN//,/\",\"}")
+  sed -i "s/\"192.168.56.20\"/${list}/g" /etc/consul.d/client.hcl
+fi
+
 systemctl enable consul.service
 systemctl start consul.service

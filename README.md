@@ -19,6 +19,25 @@ vagrant
 config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
 ```
 
+### consul-client
+[consul-client/consul.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh)
+
+input:
+- variable `IFACE` the interface to bind
+- variable `CONSUL_JOIN` comma separated server ip to join
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh | bash
+```
+
+
+vagrant
+```ruby
+config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+```
+
+
 ## vault
 
 ### vault-dev
