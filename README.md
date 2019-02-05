@@ -35,7 +35,8 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/c
 
 vagrant
 ```ruby
-config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
+config.vm.provision "shell",
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
 ```
 
 vagrant advanced
@@ -60,7 +61,8 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/co
 
 vagrant
 ```ruby
-config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+config.vm.provision "shell",
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
 ```
 
 vagrant advanced
@@ -86,7 +88,8 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/no
 
 vagrant
 ```ruby
-config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
+config.vm.provision "shell",
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
 ```
 
 vagrant advanced
@@ -110,7 +113,8 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nom
 
 vagrant
 ```ruby
-config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
+config.vm.provision "shell", 
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
 ```
 
 vagrant advanced
@@ -135,7 +139,8 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.
 
 vagrant
 ```ruby
-config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh"
+config.vm.provision "shell", 
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh"
 ```
 
 ## provision
