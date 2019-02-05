@@ -93,6 +93,8 @@ config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/cu
 ### vault-dev
 [vault-dev/vault.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh)
 
+Vault root token is `changeme`
+
 Vault requires a consul-client installed for backend. Run this script after consul cluster has been created.
 
 shell
