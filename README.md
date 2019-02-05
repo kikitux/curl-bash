@@ -6,7 +6,9 @@
 [consul-1server/consul.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh)
 
 input:
-- variable `IFACE` the interface to bind
+- variable `IFACE` the interface to bind, defaults to `ens0p8`
+- variable `DC` name of dc, defaults to dc1
+- variable `WAN_JOIN` ip of first dc, defaults to `192.168.56.20`
 
 shell
 ```bash
@@ -24,6 +26,8 @@ config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/cu
 
 input:
 - variable `IFACE` the interface to bind
+- variable `DC` name of dc, defaults to dc1
+- variable `LAN_JOIN` ip of server, defaults to `192.168.56.20`
 
 shell
 ```bash
