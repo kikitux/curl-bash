@@ -10,6 +10,13 @@ The scripts require root as we will register the services (when appropiate) with
 
 For a sample vagrant project that allows customization on network IP and DC count, check [nomad-playground](https://github.com/kikitux/nomad-playground)
 
+## General settings.
+
+When doing more than 1 datacenter, server join server over WAN, and client join server over LAN.
+
+```
+client-dc1 -> server-dc1 <--> server-dc2 <- client-dc2
+```
 
 ## consul
 
@@ -31,6 +38,13 @@ vagrant
 config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
 ```
 
+vagrant advanced
+```ruby
+config.vm.provision "shell", env: { "DC" => "dc2" , "WAN_JOIN" => "192.168.56.20" },
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
+```
+
+
 ### consul-client
 [consul-client/consul.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh)
 
@@ -47,6 +61,12 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/co
 vagrant
 ```ruby
 config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+```
+
+vagrant advanced
+```ruby
+config.vm.provision "shell", env: { "DC" => "dc2" , "LAN_JOIN" => "192.168.66.20" },
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
 ```
 
 ## nomad
@@ -69,6 +89,12 @@ vagrant
 config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
 ```
 
+vagrant advanced
+```ruby
+config.vm.provision "shell", env: { "DC" => "dc2" , "WAN_JOIN" => "192.168.56.20" },
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
+```
+
 ### nomad-client
 [nomad-client/nomad.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh)
 
@@ -87,6 +113,11 @@ vagrant
 config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
 ```
 
+vagrant advanced
+```ruby
+config.vm.provision "shell", env: { "DC" => "dc2" , "LAN_JOIN" => "192.168.66.20" },
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
+```
 
 ## vault
 
