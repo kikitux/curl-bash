@@ -161,7 +161,7 @@ config.vm.provision "shell",
 ```
 
 ### prometheus
-[provision/prometheus]((https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh)
+[provision/prometheus](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh)
 
 shell
 ```bash
