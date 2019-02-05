@@ -130,7 +130,8 @@ config.vm.provision "shell", env: { "DC" => "dc2" , "LAN_JOIN" => "192.168.66.20
 
 Vault root token is `changeme`
 
-Vault requires a consul-client installed for backend. Run this script after consul cluster has been created.
+Vault requires a consul agent installed for storage backend.
+Run this script after consul cluster has been created.
 
 shell
 ```bash
