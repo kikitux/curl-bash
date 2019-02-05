@@ -156,7 +156,8 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker
 
 vagrant
 ```ruby
-config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh"
+config.vm.provision "shell",
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh"
 ```
 
 ### prometheus
@@ -169,5 +170,6 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/promet
 
 vagrant
 ```ruby
-config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh"
+config.vm.provision "shell",
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh"
 ```
