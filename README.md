@@ -2,7 +2,7 @@
 
 A set of scripts that can be used to bootstrap dev environments in the `curl | sudo bash` way.
 
-The scripts will download any file that is required, making the script porable, and be able to use them remotely.
+The scripts will download any file that is required, making the script portable, and to be able to use them remotely.
 
 The scripts require root as we will register the services (when appropiate) with systemd.
 
@@ -13,7 +13,7 @@ The scripts require root as we will register the services (when appropiate) with
 
 input:
 - variable `IFACE` the interface to bind, defaults to `ens0p8`
-- variable `DC` name of dc, defaults to dc1
+- variable `DC` name of dc, defaults to `dc1`
 - variable `WAN_JOIN` ip of first dc, defaults to `192.168.56.20`
 
 shell
@@ -30,8 +30,8 @@ config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/cu
 [consul-client/consul.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh)
 
 input:
-- variable `IFACE` the interface to bind
-- variable `DC` name of dc, defaults to dc1
+- variable `IFACE` the interface to bind, defaults to `ens0p8`
+- variable `DC` name of dc, defaults to `dc1`
 - variable `LAN_JOIN` ip of server, defaults to `192.168.56.20`
 
 shell
@@ -42,6 +42,44 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/co
 vagrant
 ```ruby
 config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+```
+
+## nomad
+
+### nomad-1server
+[nomad-1server/nomad.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh)
+
+input:
+- variable `IFACE` the interface to bind, defaults to `ens0p8`
+- variable `DC` name of dc, defaults to `dc1`
+- variable `WAN_JOIN` ip of first dc, defaults to `192.168.56.20`
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh | sudo bash 
+```
+
+vagrant
+```ruby
+config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
+```
+
+### nomad-client
+[nomad-client/nomad.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh)
+
+input:
+- variable `IFACE` the interface to bind, defaults to `ens0p8`
+- variable `DC` name of dc, defaults to `dc1`
+- variable `LAN_JOIN` ip of server, defaults to `192.168.56.20`
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh | sudo bash
+```
+
+vagrant
+```ruby
+config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
 ```
 
 
