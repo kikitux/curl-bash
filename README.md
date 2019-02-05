@@ -6,6 +6,11 @@ The scripts will download any file that is required, making the script portable,
 
 The scripts require root as we will register the services (when appropiate) with systemd.
 
+- [consul](https://github.com/kikitux/curl-bash/blob/master/README.md#consul)
+- [nomad](https://github.com/kikitux/curl-bash/blob/master/README.md#nomad)
+- [vault](https://github.com/kikitux/curl-bash/blob/master/README.md#vault)
+- [provision of OS tools](https://github.com/kikitux/curl-bash/blob/master/README.md#provision)
+
 ## Sample usage
 
 For a sample vagrant project that allows customization on network IP and DC count, check [nomad-playground](https://github.com/kikitux/nomad-playground)
