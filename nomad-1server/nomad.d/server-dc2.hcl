@@ -10,7 +10,6 @@ advertise {
 
 server {
   enabled = true
-  bootstrap_expect = 1
   server_join {
     retry_join = [ "192.168.56.20" ]
     retry_max = 5
