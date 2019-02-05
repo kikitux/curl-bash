@@ -158,3 +158,16 @@ vagrant
 ```ruby
 config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh"
 ```
+
+### prometheus
+[provision/prometheus]((https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh)
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh | sudo -E bash
+```
+
+vagrant
+```ruby
+config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh"
+```
