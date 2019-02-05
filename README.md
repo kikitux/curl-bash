@@ -15,7 +15,7 @@ For a sample vagrant project that allows customization on network IP and DC coun
 When doing more than 1 datacenter, server join server over WAN, and client join server over LAN.
 
 ```
-client-dc1 -> server-dc1 <--> server-dc2 <- client-dc2
+client-dc1 -> server-dc1 <---> server-dc2 <- client-dc2
 ```
 
 ## consul
