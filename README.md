@@ -30,7 +30,7 @@ input:
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh | sudo bash 
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh | sudo -E bash 
 ```
 
 vagrant
@@ -56,7 +56,7 @@ input:
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh | sudo bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh | sudo -E bash
 ```
 
 vagrant
@@ -83,7 +83,7 @@ input:
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh | sudo bash 
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh | sudo -E bash 
 ```
 
 vagrant
@@ -108,7 +108,7 @@ input:
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh | sudo bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh | sudo -E bash
 ```
 
 vagrant
@@ -135,7 +135,7 @@ Run this script after consul cluster has been created.
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh | sudo bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh | sudo -E bash
 ```
 
 vagrant
