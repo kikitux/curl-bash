@@ -1,5 +1,11 @@
 # curl-bash
 
+A set of scripts that can be used to bootstrap dev environments in the `curl | sudo bash` way.
+
+The scripts will download any file that is required, making the script porable, and be able to use them remotely.
+
+The scripts require root as we will register the services (when appropiate) with systemd.
+
 ## consul
 
 ### consul-1server
@@ -12,9 +18,8 @@ input:
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh | bash 
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh | sudo bash 
 ```
-
 
 vagrant
 ```ruby
@@ -31,9 +36,8 @@ input:
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh | bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh | sudo bash
 ```
-
 
 vagrant
 ```ruby
@@ -46,9 +50,11 @@ config.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/cu
 ### vault-dev
 [vault-dev/vault.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh)
 
+Vault requires a consul-client installed for backend. Run this script after consul cluster has been created.
+
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh | bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh | sudo bash
 ```
 
 vagrant
