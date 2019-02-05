@@ -1,0 +1,19 @@
+[Unit]
+Description=P
+Documentation=https://P
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+KillMode=process
+KillSignal=SIGINT
+ExecStart=/usr/local/bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/usr/local/prometheus
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=2
+StartLimitBurst=3
+StartLimitIntervalSec=10
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
