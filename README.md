@@ -151,7 +151,7 @@ config.vm.provision "shell",
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh | sudo bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh | sudo -E bash
 ```
 
 vagrant
