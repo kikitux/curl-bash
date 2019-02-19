@@ -7,6 +7,12 @@ which consul &>/dev/null || {
   apt-get install --no-install-recommends -y curl wget unzip dnsmasq jq
 
   sudo sed -i -e 's/^#conf-dir=\/etc\/dnsmasq.d$/conf-dir=\/etc\/dnsmasq.d/g'  /etc/dnsmasq.conf
+  # dnsmasq to use consul dns
+  tee /etc/dnsmasq.d/10-consul <<EOF
+server=/consul/127.0.0.1#8600
+log-queries
+EOF
+
   sudo service dnsmasq restart
 
   CONSUL=$(curl -sL https://releases.hashicorp.com/consul/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
@@ -17,12 +23,6 @@ which consul &>/dev/null || {
   else
     ARCH=amd64
   fi
-
-  # dnsmasq to use consul dns
-  tee /etc/dnsmasq.d/10-consul <<EOF
-server=/consul/127.0.0.1#8600
-log-queries
-EOF
 
   wget -O /tmp/consul.zip https://releases.hashicorp.com/consul/${CONSUL}/consul_${CONSUL}_linux_${ARCH}.zip
   unzip -o -d /usr/local/bin /tmp/consul.zip
