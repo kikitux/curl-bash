@@ -19,7 +19,10 @@ which consul &>/dev/null || {
   fi
 
   # dnsmasq to use consul dns
-  curl -o /etc/dnsmasq.d/10-consul https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/dnsmasq.d/consul
+  tee /etc/dnsmasq.d/10-consul <<EOF
+server=/consul/127.0.0.1#8600
+log-queries
+EOF
 
   wget -O /tmp/consul.zip https://releases.hashicorp.com/consul/${CONSUL}/consul_${CONSUL}_linux_${ARCH}.zip
   unzip -o -d /usr/local/bin /tmp/consul.zip
