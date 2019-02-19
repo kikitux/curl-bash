@@ -41,7 +41,7 @@ if [ "${WAN_JOIN}" ] ; then
 fi
 
 # adjust interface if not named enp0s8
-if [ "${IFACE}" ] && [ -f /etc/consul.d/server.hcl ]; then
+if [ "${IFACE}" ] ; then
   sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/*.hcl
 fi
 

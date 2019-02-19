@@ -42,7 +42,7 @@ if [ "${LAN_JOIN}" ] ; then
 fi
 
 # adjust interfce if not named enp0s8
-if [ "${IFACE}" ] && [ -f /etc/consul.d/client.hcl ]; then
+if [ "${IFACE}" ] ; then
   sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/*.hcl
 fi
 
