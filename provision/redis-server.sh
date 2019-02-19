@@ -25,6 +25,6 @@ EOF
 
   #bind to all ports
   sudo sed -i -e 's/bind 127.0.0.1/#bind 127.0.0.1/g' /etc/redis/redis.conf
-  sudo service redis reload
+  sudo service redis-server force-reload
   sudo service consul reload
 }
