@@ -178,3 +178,18 @@ vagrant
 config.vm.provision "shell",
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh"
 ```
+
+### redis-server
+[provision/redis-server](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/redis-server.sh)
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/redis-server.sh | sudo -E bash
+```
+
+vagrant
+```ruby
+config.vm.provision "shell",
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/redis-server.sh"
+```
+
