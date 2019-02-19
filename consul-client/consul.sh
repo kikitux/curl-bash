@@ -6,14 +6,13 @@ which consul &>/dev/null || {
   apt-get update
   apt-get install --no-install-recommends -y curl wget unzip dnsmasq jq
 
-  sudo sed -i -e 's/^#conf-dir=\/etc\/dnsmasq.d$/conf-dir=\/etc\/dnsmasq.d/g'  /etc/dnsmasq.conf
   # dnsmasq to use consul dns
   tee /etc/dnsmasq.d/10-consul <<EOF
 server=/consul/127.0.0.1#8600
 log-queries
 EOF
 
-  sudo service dnsmasq restart
+  service dnsmasq restart
 
   CONSUL=$(curl -sL https://releases.hashicorp.com/consul/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
 
