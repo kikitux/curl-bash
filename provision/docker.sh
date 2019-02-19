@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+export DEBIAN_FRONTEND=noninteractive
+
 docker version 2>/dev/null || {
 
   apt-get update

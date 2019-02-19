@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 which nomad &>/dev/null || {
   apt-get update
   apt-get install --no-install-recommends -y curl wget unzip jq

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 which vault &>/dev/null || {
   apt-get update
   apt-get install --no-install-recommends -y curl wget unzip jq
