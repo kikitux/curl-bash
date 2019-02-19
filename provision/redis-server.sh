@@ -5,13 +5,13 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update
 sudo apt-get install -y redis-server
 
+
 [ -d /etc/consul.d ] && {
-  cat <<EOF | sudo tee /etc/consul.d/redis.json
+  cat <<EOF | sudo tee /etc/consul.d/redis.hcl
 {
   "service": {
     "name": "redis",
-    "port": 6379,
-    "address": "127.0.0.1"
+    "port": 6379
   },
   "checks": [
           {
@@ -23,5 +23,8 @@ sudo apt-get install -y redis-server
 }
 EOF
 
+  #bind to all ports
+  sudo sed -i -e 's/bind 127.0.0.1/#bind 127.0.0.1/g' /etc/redis/redis.conf
+  sudo service redis reload
   sudo service consul reload
 }
