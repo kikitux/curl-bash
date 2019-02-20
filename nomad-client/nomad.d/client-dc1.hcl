@@ -1,6 +1,7 @@
 datacenter = "dc1"
 
 client {
+  network_interface = "enp0s8"
   enabled = true
   server_join {
     retry_join = [ "192.168.56.20" ]
