@@ -6,7 +6,7 @@
   "bind_addr": "{{ GetInterfaceIP \"enp0s8\" }}",
   "data_dir": "/usr/local/consul",
   "bootstrap_expect": 1,
-  "enable_local_script_checks": true
+  "enable_local_script_checks": true,
   "retry_join_wan": [
     "192.168.56.20"
   ]
