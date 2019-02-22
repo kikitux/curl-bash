@@ -1,10 +1,10 @@
 # curl-bash
 
-A set of scripts that can be used to bootstrap dev environments in the `curl | sudo bash` way.
+A set of scripts that can be used to bootstrap dev environments in the `curl | sudo -E bash` way.
 
 The scripts will download any file that is required, making the script portable, and to be able to use them remotely.
 
-The scripts require root as we will register the services (when appropiate) with systemd.
+The scripts require `root` as we will install packages and register the services (when appropiate) with systemd.
 
 - [consul](https://github.com/kikitux/curl-bash/blob/master/README.md#consul)
 - [nomad](https://github.com/kikitux/curl-bash/blob/master/README.md#nomad)
