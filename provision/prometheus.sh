@@ -31,3 +31,24 @@ curl -o /etc/systemd/system/prometheus.service https://raw.githubusercontent.com
 
 systemctl enable prometheus.service
 systemctl start prometheus.service
+
+[ -d /etc/consul.d ] && {
+  cat <<EOF | sudo tee /etc/consul.d/prometheus.hcl
+{
+  "service": {
+    "name": "prometheus",
+    "port": 9090
+  },
+  "checks": [
+    {
+      "name": "prometheus-basic-connectivity",
+      "tcp": "localhost:9090",
+      "interval": "10s",
+      "timeout": "1s"
+    }
+  ]
+}
+EOF
+
+  sudo service consul reload
+}
