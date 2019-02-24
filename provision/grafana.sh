@@ -2,7 +2,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-which grafana &>/dev/null || {
+which grafana-server &>/dev/null || {
   echo 'deb https://packages.grafana.com/oss/deb stable main' | tee /etc/apt/sources.list.d/grafana.list
   curl https://packages.grafana.com/gpg.key | sudo apt-key add -
   apt-get update -y
