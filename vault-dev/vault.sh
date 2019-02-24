@@ -16,7 +16,7 @@ which vault &>/dev/null || {
     ARCH=amd64
   fi
 
-  wget -O /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_${ARCH}.zip
+  wget -q -O /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_${ARCH}.zip
   unzip -o -d /usr/local/bin /tmp/vault.zip
 }
 

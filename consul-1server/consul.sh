@@ -21,7 +21,7 @@ EOF
     ARCH=amd64
   fi
 
-  wget -O /tmp/consul.zip https://releases.hashicorp.com/consul/${CONSUL}/consul_${CONSUL}_linux_${ARCH}.zip
+  wget -q -O /tmp/consul.zip https://releases.hashicorp.com/consul/${CONSUL}/consul_${CONSUL}_linux_${ARCH}.zip
   unzip -o -d /usr/local/bin /tmp/consul.zip
 }
 

@@ -16,7 +16,7 @@ which nomad &>/dev/null || {
     ARCH=amd64
   fi
 
-  wget -O /tmp/nomad.zip https://releases.hashicorp.com/nomad/${NOMAD}/nomad_${NOMAD}_linux_${ARCH}.zip
+  wget -q -O /tmp/nomad.zip https://releases.hashicorp.com/nomad/${NOMAD}/nomad_${NOMAD}_linux_${ARCH}.zip
   unzip -d /usr/local/bin /tmp/nomad.zip
 }
 
