@@ -26,11 +26,10 @@ EOF
 
   service dnsmasq restart
 
-  # if systemd-resolved, we need to adjust dns for consul domain
+  # if systemd-resolved, disable it
   [ -f /etc/systemd/resolved.conf ] && {
-    sed -i -e 's/#DNS=.*/DNS=127.0.0.1/g' /etc/systemd/resolved.conf
-    sed -i -e 's/#Domains=.*/Domains=~consul/g' /etc/systemd/resolved.conf
-    killall -HUP systemd-resolved
+    systemctl stop systemd-resolved
+    systemctl disable systemd-resolved
   }
 
 }
