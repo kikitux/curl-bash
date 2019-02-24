@@ -165,8 +165,27 @@ config.vm.provision "shell",
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh"
 ```
 
+### grafana
+[provision/grafana](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh)
+
+> grafana uses port `3000`
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh | sudo -E bash
+```
+
+vagrant
+```ruby
+config.vm.provision "shell",
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh"
+```
+
 ### prometheus
 [provision/prometheus](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh)
+
+> install consul client for monitoring of consul metrics and nomad metrics
+> prometheus uses port `9000`
 
 shell
 ```bash
