@@ -14,6 +14,13 @@ EOF
 
   service dnsmasq restart
 
+  # if systemd-resolved, we need to adjust dns for consul domain
+  [ -f /etc/systemd/resolved.conf ] && {
+    sed -i -e 's/#DNS=.*/DNS=127.0.0.1/g' /etc/systemd/resolved.conf
+    sed -i -e 's/#Domains=.*/Domains=~consul/g' /etc/systemd/resolved.conf
+    killall -HUP systemd-resolved
+  }
+
   CONSUL=$(curl -sL https://releases.hashicorp.com/consul/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
 
   # arch
