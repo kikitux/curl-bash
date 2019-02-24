@@ -1,4 +1,8 @@
 {
+  "telemetry": {
+    "prometheus_retention_time": "24h",
+    "disable_hostname": true
+  },
   "datacenter": "dc2",
   "server": true,
   "ui": true,
