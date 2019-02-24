@@ -50,5 +50,14 @@ systemctl start prometheus.service
 }
 EOF
 
+  cat <<EOF | sudo tee /etc/consul.d/telemetry.hcl
+{
+  "telemetry": {
+    "prometheus_retention_time": "24h",
+    "disable_hostname": true
+  }
+}
+EOF
+
   sudo service consul reload
 }
