@@ -3,9 +3,11 @@
 export DEBIAN_FRONTEND=noninteractive
 
 # if systemd-resolved, disable it
-[ -f /etc/systemd/resolved.conf ] && {
+[ -f /var/run/systemd/resolve/resolv.conf ] && {
   systemctl stop systemd-resolved
   systemctl disable systemd-resolved
+  unlink /etc/resolv.conf
+  ln -s /var/run/systemd/resolve/resolv.conf /etc/resolv.conf 
 }
 
 which consul &>/dev/null || {
