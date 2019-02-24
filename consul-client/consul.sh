@@ -2,6 +2,12 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
+# if systemd-resolved, disable it
+[ -f /etc/systemd/resolved.conf ] && {
+  systemctl stop systemd-resolved
+  systemctl disable systemd-resolved
+}
+
 which consul &>/dev/null || {
   apt-get update
   apt-get install --no-install-recommends -y curl wget unzip dnsmasq jq
@@ -25,12 +31,6 @@ log-queries
 EOF
 
   service dnsmasq restart
-
-  # if systemd-resolved, disable it
-  [ -f /etc/systemd/resolved.conf ] && {
-    systemctl stop systemd-resolved
-    systemctl disable systemd-resolved
-  }
 
 }
 
