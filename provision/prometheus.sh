@@ -16,7 +16,7 @@ which prometheus &>/dev/null || {
 
   cd /usr/local
 
-  wget https://github.com/prometheus/prometheus/releases/download/v2.7.1/prometheus-2.7.1.linux-${ARCH}.tar.gz
+  wget -q https://github.com/prometheus/prometheus/releases/download/v2.7.1/prometheus-2.7.1.linux-${ARCH}.tar.gz
   tar zxvf prometheus-2.7.1.linux-${ARCH}.tar.gz
 
   ln -s /usr/local/prometheus-2.7.1.linux-${ARCH}/prometheus /usr/local/bin/prometheus
@@ -33,7 +33,7 @@ systemctl enable prometheus.service
 systemctl start prometheus.service
 
 [ -d /etc/consul.d ] && {
-  cat <<EOF | sudo tee /etc/consul.d/prometheus.hcl
+  cat <<EOF | tee /etc/consul.d/prometheus.hcl
 {
   "service": {
     "name": "prometheus",
@@ -50,5 +50,5 @@ systemctl start prometheus.service
 }
 EOF
 
-  sudo service consul reload
+  service consul reload
 }

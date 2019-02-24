@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 which grafana-server &>/dev/null || {
   echo 'deb https://packages.grafana.com/oss/deb stable main' | tee /etc/apt/sources.list.d/grafana.list
-  curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+  curl -fsSL https://packages.grafana.com/gpg.key | apt-key add -
   apt-get update -y
   apt-get install -y grafana apt-transport-https
   systemctl daemon-reload
@@ -14,7 +14,7 @@ which grafana-server &>/dev/null || {
 }
 
 [ -d /etc/consul.d ] && {
-  cat <<EOF | sudo tee /etc/consul.d/grafana.hcl
+  cat <<EOF | tee /etc/consul.d/grafana.hcl
 {
   "service": {
     "name": "grafana",
@@ -32,5 +32,5 @@ which grafana-server &>/dev/null || {
 }
 EOF
 
-  sudo service consul reload
+  service consul reload
 }

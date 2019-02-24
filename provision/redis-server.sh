@@ -3,12 +3,12 @@
 export DEBIAN_FRONTEND=noninteractive
 
 which redis-server &>/dev/null || {
-  sudo apt-get update
-  sudo apt-get install -y redis-server
+  apt-get update
+  apt-get install -y redis-server
 }
 
 [ -d /etc/consul.d ] && {
-  cat <<EOF | sudo tee /etc/consul.d/redis.hcl
+  cat <<EOF | tee /etc/consul.d/redis.hcl
 {
   "service": {
     "name": "redis",
@@ -25,7 +25,7 @@ which redis-server &>/dev/null || {
 EOF
 
   #bind to all ports
-  sudo sed -i -e 's/^bind.*/#bind 127.0.0.1/g' /etc/redis/redis.conf
-  sudo service redis-server force-reload
-  sudo service consul reload
+  sed -i -e 's/^bind.*/#bind 127.0.0.1/g' /etc/redis/redis.conf
+  service redis-server force-reload
+  service consul reload
 }
