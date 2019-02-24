@@ -2,17 +2,9 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-# if systemd-resolved, disable it
-[ -f /var/run/systemd/resolve/resolv.conf ] && {
-  systemctl stop systemd-resolved
-  systemctl disable systemd-resolved
-  unlink /etc/resolv.conf
-  ln -s /var/run/systemd/resolve/resolv.conf /etc/resolv.conf 
-}
-
 which consul &>/dev/null || {
   apt-get update
-  apt-get install --no-install-recommends -y curl wget unzip dnsmasq jq
+  apt-get install --no-install-recommends -y curl wget unzip jq
 
   CONSUL=$(curl -sL https://releases.hashicorp.com/consul/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
 
@@ -25,14 +17,6 @@ which consul &>/dev/null || {
 
   wget -q -O /tmp/consul.zip https://releases.hashicorp.com/consul/${CONSUL}/consul_${CONSUL}_linux_${ARCH}.zip
   unzip -o -d /usr/local/bin /tmp/consul.zip
-
-  # dnsmasq to use consul dns
-  tee /etc/dnsmasq.d/10-consul <<EOF
-server=/consul/127.0.0.1#8600
-log-queries
-EOF
-
-  service dnsmasq restart
 
 }
 
