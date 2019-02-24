@@ -15,12 +15,12 @@ which redis-server &>/dev/null || {
     "port": 6379
   },
   "checks": [
-          {
-            "name": "redis-basic-connectivity",
-            "args": ["/usr/bin/redis-cli", "-h", "127.0.0.1", "-p", "6379", "ping"],
-            "interval": "10s"
-          }
-        ]
+    {
+      "name": "redis-basic-connectivity",
+      "args": ["/usr/bin/redis-cli", "-h", "127.0.0.1", "-p", "6379", "ping"],
+      "interval": "10s"
+    }
+  ]
 }
 EOF
 
