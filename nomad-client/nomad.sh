@@ -20,13 +20,6 @@ which nomad &>/dev/null || {
   unzip -d /usr/local/bin /tmp/nomad.zip
 }
 
-which docker java &>/dev/null || {
-apt-get update
-apt-get install --no-install-recommends -y docker.io
-apt-get install --no-install-recommends -y default-jre
-docker run hello-world &>/dev/null && echo docker hello-world works
-}
-
 # create dir and copy server.hcl for nomad
 mkdir -p /etc/nomad.d
 curl -o /etc/nomad.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.d/client-dc1.hcl
