@@ -41,4 +41,3 @@ fi
 
 systemctl enable consul.service
 systemctl start consul.service
-systemctl reload consul.service

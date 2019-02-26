@@ -42,4 +42,3 @@ fi
 
 systemctl enable nomad.service
 systemctl start nomad.service
-systemctl reload nomad.service
