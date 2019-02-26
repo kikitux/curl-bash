@@ -28,5 +28,6 @@ curl -sL -o /etc/systemd/system/vault.service https://raw.githubusercontent.com/
 
 systemctl enable vault.service
 systemctl start vault.service 2>/dev/null
+systemctl reload vault.service 2>/dev/null
 
 echo "vault-dev installed"
