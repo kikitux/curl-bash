@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 which nomad &>/dev/null || {
   apt-get update
-  apt-get install --no-install-recommends -y curl wget unzip jq
+  apt-get install --no-install-recommends -y curl wget unzip jq cgroup-lite
 
   #always use highest release
   NOMAD=$(curl -sL https://releases.hashicorp.com/nomad/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)

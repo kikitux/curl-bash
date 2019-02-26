@@ -11,6 +11,7 @@ client {
   options = {
     "driver.raw_exec" = "1"
     "driver.raw_exec.enable" = "1"
+    "driver.raw_exec.no_cgroups" = "1"
   }
 }
 
