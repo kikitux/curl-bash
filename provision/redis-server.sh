@@ -23,9 +23,9 @@ which redis-server &>/dev/null || {
   ]
 }
 EOF
-
-  #bind to all ports
-  sed -i -e 's/^bind.*/#bind 127.0.0.1/g' /etc/redis/redis.conf
-  service redis-server force-reload
   service consul reload
 }
+
+#bind to all ports
+sed -i -e 's/^bind.*/#bind 127.0.0.1/g' /etc/redis/redis.conf
+service redis-server force-reload
