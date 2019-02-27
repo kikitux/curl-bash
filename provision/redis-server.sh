@@ -28,4 +28,5 @@ EOF
 
 #bind to all ports
 sed -i -e 's/^bind.*/#bind 127.0.0.1/g' /etc/redis/redis.conf
+sed -i -e 's/protected-mode.*.yes/protected-mode no/g' /etc/redis/redis.conf
 service redis-server force-reload
