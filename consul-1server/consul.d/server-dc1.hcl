@@ -10,19 +10,5 @@
   "bind_addr": "{{ GetInterfaceIP \"enp0s8\" }}",
   "data_dir": "/usr/local/consul",
   "bootstrap_expect": 1,
-  "enable_local_script_checks": true,
-  "service": {
-    "name": "consul-metrics",
-    "tags": ["http"],
-    "port": 8500
-  },
-  "checks": [
-    {
-      "name": "consul-metrics-basic-connectivity",
-      "tcp": "localhost:8500",
-      "interval": "10s",
-      "timeout": "1s"
-    }
-
-  ]
+  "enable_local_script_checks": true
 }

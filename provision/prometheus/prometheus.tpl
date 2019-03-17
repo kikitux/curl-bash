@@ -1,0 +1,55 @@
+global:
+  scrape_interval:     10s # scrape targets every 10 seconds.
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+
+  - job_name: 'consul_metrics'
+    consul_sd_configs:
+{{ range datacenters }}
+    - server: '127.0.0.1:8500'
+      datacenter: '{{ . }}'
+      services: ['consul']{{ end }}
+
+    relabel_configs:
+    - source_labels: ['__meta_consul_address']
+      separator: ';'
+      target_label:  '__address__'
+      replacement: '${1}:8500'
+      action: 'replace'
+
+    metrics_path: /v1/agent/metrics
+    params:
+      format: ['prometheus']
+
+  - job_name: 'nomad_metrics'
+    consul_sd_configs:
+{{ range datacenters }}
+    - server: '127.0.0.1:8500'
+      datacenter: '{{ . }}'
+      services: ['nomad', 'nomad-client']{{ end }}
+
+    relabel_configs:
+    - source_labels: ['__meta_consul_tags']
+      regex: '(.*)http(.*)'
+      action: keep
+
+    metrics_path: /v1/metrics
+    params:
+      format: ['prometheus']
+
+  - job_name: 'counter_metrics'
+    consul_sd_configs:
+    - server: '127.0.0.1:8500'
+      services: ['counter']
+
+    relabel_configs:
+    - source_labels: ['__meta_consul_tags']
+      regex: '(.*)http(.*)'
+      action: keep
+
+    metrics_path: /metrics
