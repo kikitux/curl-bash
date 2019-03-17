@@ -40,12 +40,14 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/c
 
 vagrant
 ```ruby
+config.vm.network "forwarded_port", guest: 8500, host: 8500
 config.vm.provision "shell",
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
 ```
 
 vagrant advanced
 ```ruby
+config.vm.network "forwarded_port", guest: 8500, host: 8500
 config.vm.provision "shell", env: { "DC" => "dc2" , "WAN_JOIN" => "192.168.56.20" },
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
 ```
@@ -93,12 +95,14 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/no
 
 vagrant
 ```ruby
+config.vm.network "forwarded_port", guest: 4646, host: 4646
 config.vm.provision "shell",
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
 ```
 
 vagrant advanced
 ```ruby
+config.vm.network "forwarded_port", guest: 4646, host: 4646
 config.vm.provision "shell", env: { "DC" => "dc2" , "WAN_JOIN" => "192.168.56.20" },
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
 ```
@@ -145,6 +149,7 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.
 
 vagrant
 ```ruby
+config.vm.network "forwarded_port", guest: 8200, host: 8200
 config.vm.provision "shell", 
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh"
 ```
@@ -177,6 +182,7 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafan
 
 vagrant
 ```ruby
+config.vm.network "forwarded_port", guest: 3000, host: 3000
 config.vm.provision "shell",
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh"
 ```
@@ -185,7 +191,7 @@ config.vm.provision "shell",
 [provision/prometheus](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh)
 
 > install consul client for monitoring of consul metrics and nomad metrics
-> prometheus uses port `9000`
+> prometheus uses port `9090`
 
 shell
 ```bash
@@ -194,6 +200,7 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/promet
 
 vagrant
 ```ruby
+config.vm.network "forwarded_port", guest: 9090, host: 9090
 config.vm.provision "shell",
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh"
 ```
