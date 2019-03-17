@@ -27,7 +27,6 @@ which prometheus &>/dev/null || {
 # create dir and copy prometheus.yml
 mkdir -p /etc/prometheus
 curl -s -o /etc/prometheus/prometheus.yml https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus/prometheus.yml
-curl -s -o /etc/prometheus/prometheus.ctpl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus/prometheus.ctpl
 curl -s -o /etc/systemd/system/prometheus.service https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.service
 
 systemctl enable prometheus.service
@@ -52,4 +51,12 @@ systemctl start prometheus.service
 EOF
 
   service consul reload
+  curl -s -o /etc/prometheus/prometheus.ctpl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus/prometheus.ctpl
+  curl -s -o /tmp/consul-template.sh https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/consul-template.sh
+  bash /tmp/consul-template.sh
+
+  curl -s -o /etc/systemd/system/consul-template.service https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus/consul-template.service
+  systemctl enable consul-template.service
+  systemctl restart consul-template.service
+
 }
