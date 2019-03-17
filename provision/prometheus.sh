@@ -27,7 +27,7 @@ which prometheus &>/dev/null || {
 # create dir and copy prometheus.yml
 mkdir -p /etc/prometheus
 curl -s -o /etc/prometheus/prometheus.yml https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus/prometheus.yml
-curl -s -o /etc/systemd/system/prometheus.service https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.service
+curl -s -o /etc/systemd/system/prometheus.service https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus/prometheus.service
 
 systemctl enable prometheus.service
 systemctl start prometheus.service

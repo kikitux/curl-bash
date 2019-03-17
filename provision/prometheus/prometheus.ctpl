@@ -44,8 +44,10 @@ scrape_configs:
 
   - job_name: 'counter_metrics'
     consul_sd_configs:
+{{ range datacenters }}
     - server: '127.0.0.1:8500'
-      services: ['counter']
+      datacenter: '{{ . }}'
+      services: ['counter']{{ end }}
 
     relabel_configs:
     - source_labels: ['__meta_consul_tags']
