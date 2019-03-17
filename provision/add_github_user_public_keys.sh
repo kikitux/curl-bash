@@ -30,8 +30,8 @@ IFS=$OIFS   # Restore IFS
 
 for i in ${!keys[@]}; do
 
-  grep -q "${keys[i]}" ${BASE}/authorized_keys || {
-    tee -a ${BASE}/authorized_keys <<EOF
+  grep -q "${keys[i]}" ${BASE}/authorized_keys &>/dev/null || {
+    cat >> ${BASE}/authorized_keys <<EOF
 ${keys[i]}
 EOF
   }
