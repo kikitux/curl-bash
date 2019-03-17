@@ -167,7 +167,7 @@ input:
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh | GITHUB_USER=my_github_user bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/add_github_user_public_keys.sh | GITHUB_USER=my_github_user bash
 ```
 
 vagrant
