@@ -156,6 +156,26 @@ config.vm.provision "shell",
 
 ## provision
 
+### add_github_user_public_keys.sh
+[provision/add_github_user_public_keys.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/add_github_user_public_keys.sh)
+
+> Simple script that will download the public ssh keys of a given user, and configure the local system for ssh
+password-less connection
+
+input:
+- variable `GITHUB_USER` the user which we want to download the public keys
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh | GITHUB_USER=my_github_user bash
+```
+
+vagrant
+```ruby
+config.vm.provision "shell", env: { "GITHUB_USER" => "my_github_user" },
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/add_github_user_public_keys.sh"
+```
+
 ### docker
 [provision/docker](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh)
 
