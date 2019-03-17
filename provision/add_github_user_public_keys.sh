@@ -25,7 +25,7 @@ fi
 
 OIFS=$IFS   # Save current IFS
 IFS=$'\n'   # Change IFS to new line
-keys=(`curl https://api.github.com/users/${GITHUB_USER}/keys | jq -r '.[].key'`)
+keys=(`curl -sL https://api.github.com/users/${GITHUB_USER}/keys | jq -r '.[].key'`)
 IFS=$OIFS   # Restore IFS
 
 for i in ${!keys[@]}; do
