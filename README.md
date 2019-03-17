@@ -161,6 +161,7 @@ config.vm.provision "shell",
 
 > Simple script that will download the public ssh keys of a given user, and configure the local system for ssh
 password-less connection
+> This script can be run as normal user or with sudo
 
 input:
 - variable `GITHUB_USER` the user which we want to download the public keys
