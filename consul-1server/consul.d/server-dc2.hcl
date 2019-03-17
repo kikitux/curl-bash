@@ -13,5 +13,19 @@
   "enable_local_script_checks": true,
   "retry_join_wan": [
     "192.168.56.20"
+  ],
+  "service": {
+    "name": "consul-metrics",
+    "tags": ["http"],
+    "port": 8500
+  },
+  "checks": [
+    {
+      "name": "consul-metrics-basic-connectivity",
+      "tcp": "localhost:8500",
+      "interval": "10s",
+      "timeout": "1s"
+    }
+
   ]
 }

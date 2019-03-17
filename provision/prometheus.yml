@@ -11,6 +11,15 @@ scrape_configs:
   - job_name: 'consul_metrics'
     consul_sd_configs:
     - server: '127.0.0.1:8500'
+      datacenter: 'dc1'
+      services: ['consul-metrics']
+
+    - server: '127.0.0.1:8500'
+      datacenter: 'dc2'
+      services: ['consul-metrics']
+
+    - server: '127.0.0.1:8500'
+      datacenter: 'dc3'
       services: ['consul-metrics']
 
     relabel_configs:
