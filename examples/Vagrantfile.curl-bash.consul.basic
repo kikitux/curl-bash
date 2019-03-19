@@ -1,0 +1,38 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+
+  # global
+  config.vm.box = "alvaro/xenial64"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+
+  # server
+  config.vm.define "server" do |server|
+    server.vm.hostname = "server"
+    server.vm.network "private_network", ip: "192.168.56.20"
+    server.vm.network "forwarded_port", guest: 8500, host: 8500
+
+    server.vm.provision "shell", 
+      path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
+
+  end
+
+  # client
+  (1..2).each do |i|
+    config.vm.define "client#{i}" do |vm|
+      vm.vm.hostname = "client#{i}"
+      vm.vm.network "private_network", ip: "192.168.56.#{30+i}"
+      vm.vm.provision "shell", 
+        path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+
+    end
+  end
+
+end
