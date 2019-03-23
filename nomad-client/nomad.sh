@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-export DEBIAN_FRONTEND=noninteractive
-
+# download nomad
 which nomad &>/dev/null || {
+export DEBIAN_FRONTEND=noninteractive
   apt-get update
   apt-get install --no-install-recommends -y curl wget unzip jq cgroup-lite
 
