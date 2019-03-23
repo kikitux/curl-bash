@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
+which curl tar &>/dev/null || {
+  export DEBIAN_FRONTEND=noninteractive
+  apt-get update
+  apt-get install -y curl tar
+}
+
 which node_exporter &>/dev/null || {
-  wget -N -O /tmp/node_exporter.tgz https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
+  curl -s -o /tmp/node_exporter.tgz https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
   tar zxvf /tmp/node_exporter.tgz -C /usr/local/
   ln -s /usr/local/node_exporter-0.17.0.linux-amd64/node_exporter /usr/local/bin/node_exporter
 }
