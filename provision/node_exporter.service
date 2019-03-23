@@ -1,0 +1,19 @@
+[Unit]
+Description=node_exporter
+Documentation=https://https://github.com/prometheus/node_exporter
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=10
+
+[Service]
+KillMode=process
+KillSignal=SIGINT
+ExecStart=/usr/local/bin/node_exporter
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=2
+StartLimitBurst=3
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
