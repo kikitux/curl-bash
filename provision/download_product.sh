@@ -2,14 +2,14 @@
 
 [ "${PRODUCT}" ] || {
 	echo warn: script need variable PRODUCT=name_of_product
-	echo info: skipping run as no product was given
+	echo info: skipping to run
 	exit 0
 }
 
 which ${PRODUCT} &>/dev/null || {
 
   # download tools
-  which curl wget unzip jq || {
+  which curl wget unzip jq &>/dev/null || {
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get install --no-install-recommends -y curl wget unzip jq
@@ -26,5 +26,6 @@ which ${PRODUCT} &>/dev/null || {
 
   wget -q -O /tmp/${PRODUCT}.zip https://releases.hashicorp.com/${PRODUCT}/${VERSION}/${PRODUCT}_${VERSION}_linux_${ARCH}.zip
   unzip -o -d /usr/local/bin /tmp/${PRODUCT}.zip
+  rm /tmp/${PRODUCT}.zip
 
 }
