@@ -191,6 +191,29 @@ config.vm.provision "shell",
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/docker.sh"
 ```
 
+### download_product
+[provision/download_product.sh](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/download_product.sh)
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/download_product.sh | sudo -E PRODUCT=consul bash
+```
+
+advanced shell
+```bash
+curl -sL -o /tmp/download_product.sh https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/download_product.sh
+sudo -E PRODUCT=consul bash /tmp/download_product.sh
+sudo -E PRODUCT=consul-template bash /tmp/download_product.sh
+sudo -E PRODUCT=envconsul bash /tmp/download_product.sh
+sudo -E PRODUCT=vault bash /tmp/download_product.sh
+```
+
+vagrant
+```ruby
+config.vm.provision "shell", env: { "PRODUCT" => "consul vault nomad" },
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/download_product.sh"
+```
+
 ### grafana
 [provision/grafana](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh)
 
