@@ -75,5 +75,7 @@ scrape_configs:
       action: keep
     - source_labels: [__meta_consul_node]
       target_label: instance
+      replacement: '${1}:9100'
+      action: 'replace'
 
     metrics_path: /metrics

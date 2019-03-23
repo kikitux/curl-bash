@@ -235,6 +235,7 @@ config.vm.provision "shell",
 [provision/node_exporter](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/node_exporter.sh)
 
 > node_exporter uses port `9100`
+> compatible with grafana dashboard [1860](https://grafana.com/dashboards/1860)
 
 shell
 ```bash
