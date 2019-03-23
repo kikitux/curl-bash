@@ -23,6 +23,8 @@ scrape_configs:
       action: 'replace'
     - source_labels: [__meta_consul_node]
       target_label: instance
+      replacement: '${1}:8500'
+      action: 'replace'
 
     metrics_path: /v1/agent/metrics
     params:
@@ -41,6 +43,8 @@ scrape_configs:
       action: keep
     - source_labels: [__meta_consul_node]
       target_label: instance
+      replacement: '${1}:4646'
+      action: 'replace'
 
     metrics_path: /v1/metrics
     params:
