@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+
+  # global
+  config.vm.box = "alvaro/xenial64"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "512"
+  end
+
+  # local vm block
+  (1..3).each do |i|
+    config.vm.define "client#{i}" do |vm|
+      vm.vm.hostname = "client#{i}"
+      puts 8080 + i
+      vm.vm.network "forwarded_port", guest: 80, host: 8080 + i
+    end
+  end
+
+  # we setup all the boxes the same
+  # Install webserver and java runtime
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y nginx
+  SHELL
+
+end
