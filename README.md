@@ -231,6 +231,22 @@ config.vm.provision "shell",
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh"
 ```
 
+### node_exporter
+[provision/node_exporter](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/node_exporter.sh)
+
+> node_exporter uses port `9100`
+
+shell
+```bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/node_exporter.sh | sudo -E bash
+```
+
+vagrant
+```ruby
+config.vm.provision "shell",
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/node_exporter.sh"
+```
+
 ### prometheus
 [provision/prometheus](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh)
 
