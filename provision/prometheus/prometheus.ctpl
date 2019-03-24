@@ -1,5 +1,5 @@
 global:
-  scrape_interval:     60s # scrape targets every 60 seconds.
+  scrape_interval:     20s # scrape targets every 20 seconds.
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -51,6 +51,7 @@ scrape_configs:
       format: ['prometheus']
 
   - job_name: 'counter_metrics'
+    scrape_interval:     10s
     consul_sd_configs:
 {{ range datacenters }}
     - server: '127.0.0.1:8500'
