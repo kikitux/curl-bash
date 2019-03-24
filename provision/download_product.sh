@@ -17,10 +17,10 @@ for P in ${PRODUCT}; do
     }
 
     [ "${P}" == "node_exporter" ] && {
-      URL=`curl -Ls -o /dev/null -w %{url_effective} https://github.com/prometheus/node_exporter/releases/latest`
+      URL=`curl -sL -o /dev/null -w %{url_effective} https://github.com/prometheus/node_exporter/releases/latest`
       VERSION=${URL##*/}
 
-      curl -s -o /tmp/node_exporter.tgz https://github.com/prometheus/node_exporter/releases/download/${VERSION}/node_exporter-${VERSION#v}.linux-amd64.tar.gz
+      curl -sL -o /tmp/node_exporter.tgz https://github.com/prometheus/node_exporter/releases/download/${VERSION}/node_exporter-${VERSION#v}.linux-amd64.tar.gz
       tar zxvf /tmp/node_exporter.tgz -C /usr/local/
       rm /tmp/node_exporter.tgz
       ln -s /usr/local/node_exporter-${VERSION#v}.linux-amd64/node_exporter /usr/local/bin/node_exporter

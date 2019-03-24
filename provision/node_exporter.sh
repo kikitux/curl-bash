@@ -12,7 +12,7 @@ which node_exporter &>/dev/null || {
   ln -s /usr/local/node_exporter-0.17.0.linux-amd64/node_exporter /usr/local/bin/node_exporter
 }
 
-curl -s -o /etc/systemd/system/node_exporter.service https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/node_exporter.service
+curl -sL -o /etc/systemd/system/node_exporter.service https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/node_exporter.service
 
 systemctl enable node_exporter.service
 systemctl start node_exporter.service
