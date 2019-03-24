@@ -10,10 +10,6 @@ which grafana-server &>/dev/null || {
   curl -fsSL https://packages.grafana.com/gpg.key | apt-key add -
   apt-get update
   apt-get install -y grafana apt-transport-https
-  mkdir -p /var/lib/grafana/dashboards
-  curl -sL -o /var/lib/grafana/dashboards/node-exporter-full_rev13.json https://grafana.com/api/dashboards/1860/revisions/13/download
-  curl -sL -o /etc/grafana/provisioning/dashboards/dashboard_path.yml \
-	  https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana/dashboard_path.yml
   systemctl daemon-reload
   systemctl enable grafana-server
   systemctl start grafana-server
