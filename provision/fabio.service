@@ -1,14 +1,19 @@
 [Unit]
-Description=node_exporter
-Documentation=https://github.com/prometheus/node_exporter
+Description=fabio
+Documentation=http://fabiolb.net
 Wants=network-online.target
 After=network-online.target
 StartLimitIntervalSec=10
 
+# If you are running Consul, please uncomment following Wants/After configs.
+# Assuming your Consul service unit name is "consul"
+Wants=consul.service
+After=consul.service
+
 [Service]
 KillMode=process
 KillSignal=SIGINT
-ExecStart=/usr/local/bin/node_exporter
+ExecStart=/usr/local/bin/fabio -insecure
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=2
