@@ -7,7 +7,7 @@ which curl tar &>/dev/null || {
 }
 
 which node_exporter &>/dev/null || {
-  curl -s -o /tmp/node_exporter.tgz https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
+  curl -sL -o /tmp/node_exporter.tgz https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
   tar zxvf /tmp/node_exporter.tgz -C /usr/local/
   ln -s /usr/local/node_exporter-0.17.0.linux-amd64/node_exporter /usr/local/bin/node_exporter
 }
