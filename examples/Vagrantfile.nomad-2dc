@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "alvaro/bionic64"
+  config.vm.box = "bento/ubuntu-18.04"                          	# this box have 2nd nic on eth1, we will set IFACE=eth1
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 768
@@ -27,17 +27,18 @@ Vagrant.configure("2") do |config|
       s.vm.network "forwarded_port", guest: 8500, host: 8500 if dc == 1 #consul
 
       #consul
-      s.vm.provision "shell", env: { "DC" => "dc#{dc}" , "WAN_JOIN" => WAN_JOIN },
+      s.vm.provision "shell", env: { "DC" => "dc#{dc}" , "WAN_JOIN" => WAN_JOIN , "IFACE" => "eth1" },
         path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
 
       #nomad
-      s.vm.provision "shell", env: { "DC" => "dc#{dc}" , "WAN_JOIN" => WAN_JOIN },
+      s.vm.provision "shell", env: { "DC" => "dc#{dc}" , "WAN_JOIN" => WAN_JOIN , "IFACE" => "eth1" },
         path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
       
       #only on dc1
       if dc == 1
         #vault-dev 
-        s.vm.provision "shell", path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh"
+        s.vm.provision "shell", env: { "IFACE" => "eth1" },
+          path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh"
       end
 
     end
@@ -50,10 +51,10 @@ Vagrant.configure("2") do |config|
         c.vm.hostname = "client#{i}-dc#{dc}"
         c.vm.network "private_network", ip: "#{ip}.#{30+i}", netmask:"255.255.0.0"
 
-        c.vm.provision "shell", env: { "DC" => "dc#{dc}" , "LAN_JOIN" => "#{ip}.#{20}" },
+        c.vm.provision "shell", env: { "DC" => "dc#{dc}" , "LAN_JOIN" => "#{ip}.#{20}" , "IFACE" => "eth1" },
           path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
 
-        c.vm.provision "shell", env: { "DC" => "dc#{dc}" , "LAN_JOIN" => "#{ip}.#{20}" },
+        c.vm.provision "shell", env: { "DC" => "dc#{dc}" , "LAN_JOIN" => "#{ip}.#{20}" , "IFACE" => "eth1" },
           path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
       end
     end
