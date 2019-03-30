@@ -23,15 +23,22 @@ which consul &>/dev/null || {
 mkdir -p /etc/consul.d
 curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.service
 
-if [ "${DC}" ] && [ "${DC}" != "dc1" ]; then
+# if we have WAN_JOIN then we are on the 2nd dc
+if [ "${WAN_JOIN}" ] ; then
   curl -o /etc/consul.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.d/server-dc2.hcl
-  sed -i "s/dc2/${DC}/g" /etc/consul.d/*.hcl
+  sed -i "s/192.168.56.20/${WAN_JOIN}/g" /etc/consul.d/*.hcl
+# else we are on the 1st dc
 else
   curl -o /etc/consul.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.d/server-dc1.hcl
 fi
 
-if [ "${WAN_JOIN}" ] ; then
-  sed -i "s/192.168.56.20/${WAN_JOIN}/g" /etc/consul.d/*.hcl
+# if we have DC var, we need to rename the DC
+# if DC and WAN_JOIN, we are on dc2
+if [ "${DC}" ] && [ "${WAN_JOIN}" ] ; then
+  sed -i "s/dc2/${DC}/g" /etc/consul.d/*.hcl
+# elif DC only, we are on dc1
+elif [ "${DC}" ] ; then
+  sed -i "s/dc1/${DC}/g" /etc/consul.d/*.hcl
 fi
 
 # adjust interface if not named enp0s8
