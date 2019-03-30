@@ -27,15 +27,27 @@ which nomad &>/dev/null || {
 mkdir -p /etc/nomad.d
 curl -o /etc/systemd/system/nomad.service https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.service
 
-if [ "${DC}" ] && [ "${DC}" != "dc1" ]; then
+# if we have WAN_JOIN then we are on the 2nd dc
+if [ "${WAN_JOIN}" ] ; then
   curl -o /etc/nomad.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.d/server-dc2.hcl
-  sed -i "s/dc2/${DC}/g" /etc/nomad.d/*.hcl
+  sed -i "s/192.168.56.20/${WAN_JOIN}/g" /etc/nomad.d/*.hcl
+# else we are on the 1st dc
 else
   curl -o /etc/nomad.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.d/server-dc1.hcl
 fi
 
-if [ "${WAN_JOIN}" ] ; then
-  sed -i "s/192.168.56.20/${WAN_JOIN}/g" /etc/nomad.d/*.hcl
+# if we have DC var, we need to rename the DC
+# if DC and WAN_JOIN, we are on dc2
+if [ "${DC}" ] && [ "${WAN_JOIN}" ] ; then
+  sed -i "s/dc2/${DC}/g" /etc/nomad.d/*.hcl
+# elif DC only, we are on dc1
+elif [ "${DC}" ] ; then
+  sed -i "s/dc1/${DC}/g" /etc/nomad.d/*.hcl
+fi
+
+# adjust interface if not named enp0s8
+if [ "${IFACE}" ] ; then
+  sed -i "s/enp0s8/${IFACE}/g" /etc/consul.d/*.hcl
 fi
 
 # adjust interfce if not named enp0s8
