@@ -28,7 +28,7 @@ for P in ${PRODUCT}; do
 
     }
     
-    [ "${P}" == "grafana" ] && {
+    [ "${P}" == "grafana-server" ] && {
       export DEBIAN_FRONTEND=noninteractive
       apt-get update
       apt-get install -y gnupg
