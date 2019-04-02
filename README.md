@@ -214,21 +214,21 @@ config.vm.provision "shell", env: { "PRODUCT" => "consul vault nomad" },
   path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/download_product.sh"
 ```
 
-### grafana
-[provision/grafana](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh)
+### grafana-server
+[provision/grafana-server](https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana-server.sh)
 
 > grafana uses port `3000`
 
 shell
 ```bash
-curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh | sudo -E bash
+curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana-server.sh | sudo -E bash
 ```
 
 vagrant
 ```ruby
 config.vm.network "forwarded_port", guest: 3000, host: 3000
 config.vm.provision "shell",
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana.sh"
+  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana-server.sh"
 ```
 
 ### node_exporter
