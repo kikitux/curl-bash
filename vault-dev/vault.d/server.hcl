@@ -11,3 +11,9 @@
   "plugin_directory": "/usr/local/vault/plugins",
   "disable_mlock": true
 }
+
+telemetry {
+  prometheus_retention_time = "30s",
+  disable_hostname = true
+}
+
