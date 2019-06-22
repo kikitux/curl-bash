@@ -6,10 +6,19 @@ which curl tar &>/dev/null || {
   apt-get install -y curl tar
 }
 
+# arch
+if [[ "`uname -m`" =~ "arm" ]]; then
+  ARCH=armv7
+elif [[ "`uname -m`" == "aarch64" ]]; then
+  ARCH=arm64
+else
+  ARCH=amd64
+fi
+
 which node_exporter &>/dev/null || {
-  curl -sL -o /tmp/node_exporter.tgz https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
+  curl -sL -o /tmp/node_exporter.tgz https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-${ARCH}.tar.gz
   tar zxvf /tmp/node_exporter.tgz -C /usr/local/
-  ln -s /usr/local/node_exporter-0.17.0.linux-amd64/node_exporter /usr/local/bin/node_exporter
+  ln -s /usr/local/node_exporter-0.18.1.linux-${ARCH}/node_exporter /usr/local/bin/node_exporter
 }
 
 curl -sL -o /etc/systemd/system/node_exporter.service https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/node_exporter.service
