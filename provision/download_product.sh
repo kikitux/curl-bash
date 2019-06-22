@@ -47,6 +47,8 @@ for P in ${PRODUCT}; do
     # arch
     if [[ "`uname -m`" =~ "arm" ]]; then
       ARCH=arm
+    elif [[ "`uname -m`" == "aarch64" ]]; then
+      ARCH=arm64      
     else
       ARCH=amd64
     fi

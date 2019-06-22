@@ -10,17 +10,19 @@ which prometheus &>/dev/null || {
   # arch
   if [[ "`uname -m`" =~ "arm" ]]; then
     ARCH=armv7
+  elif [[ "`uname -m`" == "aarch64" ]]; then
+    ARCH=arm64
   else
     ARCH=amd64
   fi
 
   cd /usr/local
 
-  wget -q https://github.com/prometheus/prometheus/releases/download/v2.7.1/prometheus-2.7.1.linux-${ARCH}.tar.gz
-  tar zxvf prometheus-2.7.1.linux-${ARCH}.tar.gz
+  wget -q https://github.com/prometheus/prometheus/releases/download/v2.10.0/prometheus-2.10.0.linux-${ARCH}.tar.gz
+  tar zxvf prometheus-2.10.0.linux-${ARCH}.tar.gz
 
-  ln -s /usr/local/prometheus-2.7.1.linux-${ARCH}/prometheus /usr/local/bin/prometheus
-  ln -s /usr/local/prometheus-2.7.1.linux-${ARCH}/promtool /usr/local/bin/promtool
+  ln -s /usr/local/prometheus-2.10.0.linux-${ARCH}/prometheus /usr/local/bin/prometheus
+  ln -s /usr/local/prometheus-2.10.0.linux-${ARCH}/promtool /usr/local/bin/promtool
 
 }
 
