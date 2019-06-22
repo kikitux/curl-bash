@@ -3,8 +3,11 @@
 export DEBIAN_FRONTEND=noninteractive
 
 which consul-template &>/dev/null || {
-  apt-get update
-  apt-get install --no-install-recommends -y curl wget unzip jq
+
+  which curl wget unzip jq &>/dev/null || {
+    apt-get update
+    apt-get install --no-install-recommends -y curl wget unzip jq
+  }
 
   CONSUL_TEMPLATE=$(curl -sL https://releases.hashicorp.com/consul-template/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
 
@@ -12,7 +15,7 @@ which consul-template &>/dev/null || {
   if [[ "`uname -m`" =~ "arm" ]]; then
     ARCH=arm
   elif [[ "`uname -m`" == "aarch64" ]]; then
-    ARCH=arm64
+    ARCH=arm
   else
     ARCH=amd64
   fi
