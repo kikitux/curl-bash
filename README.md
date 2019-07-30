@@ -40,16 +40,20 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/c
 
 vagrant
 ```ruby
-config.vm.network "forwarded_port", guest: 8500, host: 8500
-config.vm.provision "shell",
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
+config.vm.define "consul" do |consul|
+  consul.vm.network "forwarded_port", guest: 8500, host: 8500
+  consul.vm.provision "shell",
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
+end
 ```
 
 vagrant advanced
 ```ruby
-config.vm.network "forwarded_port", guest: 8500, host: 8500
-config.vm.provision "shell", env: { "DC" => "dc2" , "WAN_JOIN" => "192.168.56.20" },
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
+config.vm.define "consul" do |consul|
+  consul.vm.network "forwarded_port", guest: 8500, host: 8500
+  consul.vm.provision "shell", env: { "DC" => "dc2" , "WAN_JOIN" => "192.168.56.20" },
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.sh"
+end
 ```
 
 
@@ -68,14 +72,18 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/co
 
 vagrant
 ```ruby
-config.vm.provision "shell",
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+config.vm.define "client" do |client|
+  client.vm.provision "shell",
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+end
 ```
 
 vagrant advanced
 ```ruby
-config.vm.provision "shell", env: { "DC" => "dc2" , "LAN_JOIN" => "192.168.66.20" },
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+config.vm.define "client" do |client|
+  client.vm.provision "shell", env: { "DC" => "dc2" , "LAN_JOIN" => "192.168.66.20" },
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+end
 ```
 
 ## nomad
@@ -95,16 +103,20 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/no
 
 vagrant
 ```ruby
-config.vm.network "forwarded_port", guest: 4646, host: 4646
-config.vm.provision "shell",
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
+config.vm.define "nomad" do |nomad|
+  nomad.vm.network "forwarded_port", guest: 4646, host: 4646
+  nomad.vm.provision "shell",
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
+end
 ```
 
 vagrant advanced
 ```ruby
-config.vm.network "forwarded_port", guest: 4646, host: 4646
-config.vm.provision "shell", env: { "DC" => "dc2" , "WAN_JOIN" => "192.168.56.20" },
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
+config.vm.define "nomad" do |nomad|
+  nomad.vm.network "forwarded_port", guest: 4646, host: 4646
+  nomad.vm.provision "shell", env: { "DC" => "dc2" , "WAN_JOIN" => "192.168.56.20" },
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.sh"
+end
 ```
 
 ### nomad-client
@@ -122,14 +134,18 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nom
 
 vagrant
 ```ruby
-config.vm.provision "shell", 
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
+config.vm.define "client" do |client|
+  client.vm.provision "shell", 
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
+end
 ```
 
 vagrant advanced
 ```ruby
-config.vm.provision "shell", env: { "DC" => "dc2" , "LAN_JOIN" => "192.168.66.20" },
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
+config.vm.define "client" do |client|
+  client.vm.provision "shell", env: { "DC" => "dc2" , "LAN_JOIN" => "192.168.66.20" },
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh"
+end
 ```
 
 ## vault
@@ -149,9 +165,11 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.
 
 vagrant
 ```ruby
-config.vm.network "forwarded_port", guest: 8200, host: 8200
-config.vm.provision "shell", 
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh"
+config.vm.define "vault" do |vault|
+  vault.vm.network "forwarded_port", guest: 8200, host: 8200
+  vault.vm.provision "shell", 
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh"
+end
 ```
 
 ## provision
@@ -226,9 +244,11 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafan
 
 vagrant
 ```ruby
-config.vm.network "forwarded_port", guest: 3000, host: 3000
-config.vm.provision "shell",
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana-server.sh"
+config.vm.define "grafana" do |grafana|
+  grafana.vm.network "forwarded_port", guest: 3000, host: 3000
+  grafana.vm.provision "shell",
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/grafana-server.sh"
+end
 ```
 
 ### node_exporter
@@ -261,9 +281,11 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/promet
 
 vagrant
 ```ruby
-config.vm.network "forwarded_port", guest: 9090, host: 9090
-config.vm.provision "shell",
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh"
+config.vm.define "prometheus" do |prometheus|
+  prometheus.vm.network "forwarded_port", guest: 9090, host: 9090
+  prometheus.vm.provision "shell",
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/prometheus.sh"
+end
 ```
 
 ### redis-server
@@ -276,7 +298,9 @@ curl https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/redis-
 
 vagrant
 ```ruby
-config.vm.provision "shell",
-  path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/redis-server.sh"
+config.vm.define "redis" do |redis|
+  redis.vm.provision "shell",
+    path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/redis-server.sh"
+end
 ```
 
