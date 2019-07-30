@@ -24,6 +24,20 @@ Vagrant.configure("2") do |config|
 
   end
 
+  # vault
+  config.vm.define "vault" do |vault|
+    vault.vm.hostname = "vault"
+    vault.vm.network "private_network", ip: "192.168.56.25"
+    vault.vm.network "forwarded_port", guest: 8200, host: 8200
+
+    vault.vm.provision "shell",
+      path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh"
+
+    vault.vm.provision "shell",
+      path: "https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-dev/vault.sh"
+
+  end
+
   # client
   (1..2).each do |i|
     config.vm.define "client#{i}" do |vm|
