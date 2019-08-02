@@ -42,7 +42,8 @@ for P in ${PRODUCT}; do
       continue
     }
 
-    VERSION=$(curl -sL https://releases.hashicorp.com/${P}/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
+    # we use version we got in a variable, or just download latest stable
+    [ "${VERSION}" ] || VERSION=$(curl -sL https://releases.hashicorp.com/${P}/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
 
     # arch
     if [[ "`uname -m`" =~ "arm" ]]; then
