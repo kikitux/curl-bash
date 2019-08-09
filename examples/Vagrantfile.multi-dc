@@ -3,10 +3,9 @@
 
 Vagrant.configure("2") do |config|
 
-  (1..2).each do |d|
-    # d is a interger 
-    # we create dc as a dc1 or dc2
-    dc="dc#{d}" 
+  ["dc1","dc2"].to_enum.with_index(1).each do |dc, d|
+    # dc is the name of dc, dc1 or dc2
+    # d is a interger, 1 or 2 
 
     # db
     config.vm.define "db-#{dc}" do |db|
@@ -29,6 +28,6 @@ Vagrant.configure("2") do |config|
       end
     end
 
-  end #d
+  end #dc,d
 
 end
