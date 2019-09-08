@@ -32,6 +32,8 @@ curl -o /etc/systemd/system/consul.service https://raw.githubusercontent.com/kik
 if [ "${WAN_JOIN}" ] ; then
   curl -o /etc/consul.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.d/server-dc2.hcl
   sed -i "s/192.168.56.20/${WAN_JOIN}/g" /etc/consul.d/*.hcl
+  # remove double quotes "" -> "
+  sed -i -e "s/\"\"/\"/g" /etc/consul.d/*.hcl
 # else we are on the 1st dc
 else
   curl -o /etc/consul.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-1server/consul.d/server-dc1.hcl
