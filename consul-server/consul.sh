@@ -45,6 +45,8 @@ fi
 # retry-join string here
 if [ "${RETRY_JOIN}" ]; then
   sed -i -e "s/\"retry_join\": \[\"localhost\"\]/\"retry_join\": \[\"${RETRY_JOIN}\"\]/g" /etc/consul.d/*.hcl
+  # remove double quotes "" -> "
+  sed -i -e "s/\"\"/\"/g" /etc/consul.d/*.hcl
 else
   sed -i -e "s/\"retry_join\": \[\"localhost\"\]//g" /etc/consul.d/*.hcl
 fi
