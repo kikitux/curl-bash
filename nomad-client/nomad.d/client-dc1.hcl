@@ -1,4 +1,5 @@
 datacenter = "dc1"
+region = "global"
 
 client {
   network_interface = "enp0s8"

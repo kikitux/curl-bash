@@ -30,6 +30,11 @@ mkdir -p /etc/nomad.d
 curl -o /etc/nomad.d/client.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.d/client-dc1.hcl
 curl -o /etc/systemd/system/nomad.service https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.service
 
+# region default to global
+if [ "${REGION}" ]; then
+  sed -i -e "s/region = \"global\"/region = \"${REGION}\"/g" /etc/nomad.d/*.hcl
+fi
+
 if [ "${DC}" ] && [ "${DC}" != "dc1" ]; then
   sed -i "s/dc1/${DC}/g" /etc/nomad.d/*.hcl
 fi
