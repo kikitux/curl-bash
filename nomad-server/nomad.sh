@@ -45,6 +45,11 @@ if [ "${COUNT}" ]; then
   sed -i -e "s/bootstrap_expect = 1/bootstrap_expect = ${COUNT}/g" /etc/nomad.d/*.hcl
 fi
 
+# region default to global
+if [ "${REGION}" ]; then
+  sed -i -e "s/region = \"global\"/region = \"${REGION}\"/g" /etc/nomad.d/*.hcl
+fi
+
 # if we have DC var, we need to rename the DC
 # if DC and WAN_JOIN, we are on dc2
 if [ "${DC}" ] && [ "${WAN_JOIN}" ] ; then

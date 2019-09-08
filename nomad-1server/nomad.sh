@@ -38,6 +38,11 @@ else
   curl -o /etc/nomad.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-1server/nomad.d/server-dc1.hcl
 fi
 
+# region default to global
+if [ "${REGION}" ]; then
+  sed -i -e "s/region = \"global\"/region = \"${REGION}\"/g" /etc/nomad.d/*.hcl
+fi
+
 # if we have DC var, we need to rename the DC
 # if DC and WAN_JOIN, we are on dc2
 if [ "${DC}" ] && [ "${WAN_JOIN}" ] ; then
