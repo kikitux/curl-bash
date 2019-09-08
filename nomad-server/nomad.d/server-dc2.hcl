@@ -12,8 +12,8 @@ server {
   enabled = true
   server_join {
     retry_join = [ "192.168.56.20" ]
-    retry_max = 5
-    retry_interval = "15s"
+    retry_max = 6
+    retry_interval = "30s"
   }
 }
 

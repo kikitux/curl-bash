@@ -12,8 +12,8 @@ server {
   enabled = true
   bootstrap_expect = 1
   server_join {
-    retry_max = 5
-    retry_interval = "15s"
+    retry_max = 6
+    retry_interval = "30s"
   }
 }
 
