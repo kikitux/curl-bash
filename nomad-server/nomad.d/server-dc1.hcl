@@ -12,7 +12,6 @@ server {
   enabled = true
   bootstrap_expect = 1
   server_join {
-    retry_join = [ "localhost" ]
     retry_max = 5
     retry_interval = "15s"
   }
