@@ -42,7 +42,7 @@ fi
 
 # count default to 1
 if [ "${COUNT}" ]; then
-  sed -i -e "s/bootstrap_expect = 1,/bootstrap_expect = ${COUNT},/g" /etc/nomad.d/*.hcl
+  sed -i -e "s/bootstrap_expect = 1/bootstrap_expect = ${COUNT}/g" /etc/nomad.d/*.hcl
 fi
 
 # if we have DC var, we need to rename the DC
