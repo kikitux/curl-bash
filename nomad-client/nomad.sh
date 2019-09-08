@@ -41,6 +41,8 @@ fi
 
 if [ "${LAN_JOIN}" ] ; then
   sed -i "s/192.168.56.20/${LAN_JOIN}/g" /etc/nomad.d/*.hcl
+  # remove double quotes "" -> "
+  sed -i -e "s/\"\"/\"/g" /etc/nomad.d/*.hcl
 fi
 
 systemctl enable nomad.service
