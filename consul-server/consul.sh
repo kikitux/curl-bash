@@ -44,15 +44,6 @@ if [ "${COUNT}" ]; then
   sed -i -e "s/\"bootstrap_expect\": 1,/\"bootstrap_expect\": ${COUNT},/g" /etc/consul.d/*.hcl
 fi
 
-# retry-join string here
-if [ "${RETRY_JOIN}" ]; then
-  sed -i -e "s/\"retry_join\": \[\"localhost\"\]/\"retry_join\": \[\"${RETRY_JOIN}\"\]/g" /etc/consul.d/*.hcl
-  # remove double quotes "" -> "
-  sed -i -e "s/\"\"/\"/g" /etc/consul.d/*.hcl
-else
-  sed -i -e "s/\"retry_join\": \[\"localhost\"\]//g" /etc/consul.d/*.hcl
-fi
-
 # if we have DC var, we need to rename the DC
 # if DC and WAN_JOIN, we are on dc2
 if [ "${DC}" ] && [ "${WAN_JOIN}" ] ; then
@@ -60,6 +51,15 @@ if [ "${DC}" ] && [ "${WAN_JOIN}" ] ; then
 # elif DC only, we are on dc1
 elif [ "${DC}" ] ; then
   sed -i "s/dc1/${DC}/g" /etc/consul.d/*.hcl
+fi
+
+# retry-join string here
+if [ "${RETRY_JOIN}" ]; then
+  sed -i -e "s/\"retry_join\": \[\"localhost\"\]/\"retry_join\": \[\"${RETRY_JOIN}\"\]/g" /etc/consul.d/*.hcl
+  # remove double quotes "" -> "
+  sed -i -e "s/\"\"/\"/g" /etc/consul.d/*.hcl
+else
+  sed -i -e "s/\"retry_join\": \[\"localhost\"\]//g" /etc/consul.d/*.hcl
 fi
 
 # adjust interface if not named enp0s8
