@@ -53,10 +53,10 @@ fi
 # if we have DC var, we need to rename the DC
 # if DC and WAN_JOIN, we are on dc2
 if [ "${DC}" ] && [ "${WAN_JOIN}" ] ; then
-  sed -i "s/dc2/${DC}/g" /etc/nomad.d/*.hcl
+  sed -i "s/datacenter = \"dc2\"/datacenter = \"${DC}\"/g" /etc/nomad.d/*.hcl
 # elif DC only, we are on dc1
 elif [ "${DC}" ] ; then
-  sed -i "s/dc1/${DC}/g" /etc/nomad.d/*.hcl
+  sed -i "s/datacenter = \"dc1\"/datacenter = \"${DC}\"/g" /etc/nomad.d/*.hcl
 fi
 
 # adjust interfce if not named enp0s8
