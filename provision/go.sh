@@ -12,23 +12,25 @@ which go || {
   # if we are in sudo use the calling user
   # we use eval as ~ won't be expanded
   if [ "${SUDO_USER}" ]; then
-    BASE="`eval echo ~${SUDO_USER}/.bash_profile`"
+    BASE="`eval echo ~${SUDO_USER}`"
+    PROFILE=${BASE}/.bash_profile
   else
-    BASE="`eval echo ~/.bash_profile`"
+    BASE="`eval echo ~`"
+    PROFILE=${BASE}/.bash_profile
   fi
 
-  grep 'GOROOT' ${BASE} &>/dev/null || {
-    sudo mkdir -p ~/go
-    [ -f ${BASE} ] && cp ${BASE} ${BASE}.ori
-    grep -v 'GOPATH|GOROOT' ${BASE}.ori | sudo tee -a ${BASE}
-    echo 'export GOROOT=/snap/go/current' | sudo tee -a ${BASE}
-    echo 'export PATH=$PATH:/snap/bin:$GOROOT/bin' | sudo tee -a ${BASE}
-    echo 'export GOPATH=~/go' | sudo tee -a ${BASE}
+  grep 'GOROOT' ${PROFILE} &>/dev/null || {
+    mkdir -p ${BASE}/go
+    [ -f ${PROFILE} ] && cp ${PROFILE} ${PROFILE}.ori
+    grep -v 'GOPATH|GOROOT' ${PROFILE}.ori | sudo tee -a ${PROFILE}
+    echo 'export GOROOT=/snap/go/current' | sudo tee -a ${PROFILE}
+    echo 'export PATH=$PATH:/snap/bin:$GOROOT/bin' | sudo tee -a ${PROFILE}
+    echo 'export GOPATH=~/go' | sudo tee -a ${PROFILE}
   }
 
   if [ "${SUDO_USER}" ]; then
-    chown ${SUDO_USER} ${BASE}
-    [ -f ${BASE}.ori ] && chown ${SUDO_USER} ${BASE}.ori
+    [ -f ${PROFILE} ] && chown ${SUDO_USER} ${PROFILE}.ori
+    chown ${SUDO_USER} ${PROFILE}
   fi
 
 }
