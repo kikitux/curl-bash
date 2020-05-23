@@ -13,12 +13,13 @@ which go || {
   # we use eval as ~ won't be expanded
   if [ "${SUDO_USER}" ]; then
     BASE="`eval echo ~${SUDO_USER}`"
-    PROFILE=${BASE}/.bash_profile
   else
     BASE="`eval echo ~`"
-    PROFILE=${BASE}/.bash_profile
   fi
 
+  PROFILE=${BASE}/.bash_profile
+  touch ${PROFILE}
+  
   grep 'GOROOT' ${PROFILE} &>/dev/null || {
     mkdir -p ${BASE}/go
     [ -f ${PROFILE} ] && cp ${PROFILE} ${PROFILE}.ori
@@ -29,7 +30,7 @@ which go || {
   }
 
   if [ "${SUDO_USER}" ]; then
-    [ -f ${PROFILE} ] && chown ${SUDO_USER} ${PROFILE}.ori
+    [ -f ${PROFILE}.ori ] && chown ${SUDO_USER} ${PROFILE}.ori
     chown ${SUDO_USER} ${PROFILE}
   fi
 
