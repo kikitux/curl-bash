@@ -4,7 +4,7 @@ which go || {
   # make sure apt database is up-to date
   apt-get update
 
-  # install golang-${GOVER}
+  # install golang
   apt-get install -y snapd
   snap install go --classic
 
@@ -17,7 +17,7 @@ which go || {
     BASE="`eval echo ~/.bash_profile`"
   fi
 
-  grep 'GOPATH|GOROOT' ${BASE} &>/dev/null || {
+  grep 'GOROOT' ${BASE} &>/dev/null || {
     sudo mkdir -p ~/go
     [ -f ${BASE} ] && cp ${BASE} ${BASE}.ori
     grep -v 'GOPATH|GOROOT' ${BASE}.ori | sudo tee -a ${BASE}
