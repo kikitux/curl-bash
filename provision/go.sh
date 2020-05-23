@@ -18,7 +18,7 @@ fi
 
 grep 'GOPATH|GOROOT' ${BASE} &>/dev/null || {
   sudo mkdir -p ~/go
-  cp ${BASE} ${BASE}.ori
+  [ -f ${BASE} ] && cp ${BASE} ${BASE}.ori
   grep -v 'GOPATH|GOROOT' ${BASE}.ori | sudo tee -a ${BASE}
   echo 'export GOROOT=/snap/go/current' | sudo tee -a ${BASE}
   echo 'export PATH=$PATH:/snap/bin:$GOROOT/bin' | sudo tee -a ${BASE}
@@ -26,5 +26,6 @@ grep 'GOPATH|GOROOT' ${BASE} &>/dev/null || {
 }
 
 if [ "${SUDO_USER}" ]; then
-  chown ${SUDO_USER} ${BASE} ${BASE}.ori
+  chown ${SUDO_USER} ${BASE}
+  [ -f ${BASE}.ori ] && chown ${SUDO_USER} ${BASE}.ori
 fi
