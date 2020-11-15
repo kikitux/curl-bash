@@ -43,7 +43,9 @@ for P in ${PRODUCT}; do
     }
 
     # we use version we got in a variable, or just download latest stable
-    [ "${VERSION}" ] || VERSION=$(curl -sL https://releases.hashicorp.com/${P}/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
+    [ "${VERSION}" ] || {
+      VERSION=$(curl -sL https://releases.hashicorp.com/${P}/index.json | jq -r '.versions[].version' | sort -V | egrep -v 'ent|beta|rc|alpha' | tail -n1)
+    }
 
     # arch
     if [[ "`uname -m`" =~ "arm" ]]; then
@@ -52,6 +54,16 @@ for P in ${PRODUCT}; do
       ARCH=arm64      
     else
       ARCH=amd64
+    fi
+
+    # ent
+
+    if [ "${P}" == "consul" ] && [ "${ENT}" ] ; then
+      P="consul+ent"
+    fi
+
+    if [ "${P}" == "vault" ] && [ "${ENT}" ] ; then
+      P="vault+ent"
     fi
 
     wget -q -O /tmp/${P}.zip https://releases.hashicorp.com/${P}/${VERSION}/${P}_${VERSION}_linux_${ARCH}.zip
