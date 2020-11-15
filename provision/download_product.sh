@@ -58,12 +58,13 @@ for P in ${PRODUCT}; do
 
     # ent
 
+    # https://releases.hashicorp.com/consul/1.8.5+ent/consul_1.8.5+ent_linux_amd64.zip
     if [ "${P}" == "consul" ] && [ "${ENT}" ] ; then
-      P="consul+ent"
+      VERSION=${VERSION}+ent
     fi
 
     if [ "${P}" == "vault" ] && [ "${ENT}" ] ; then
-      P="vault+ent"
+      VERSION=${VERSION}+ent
     fi
 
     wget -q -O /tmp/${P}.zip https://releases.hashicorp.com/${P}/${VERSION}/${P}_${VERSION}_linux_${ARCH}.zip
