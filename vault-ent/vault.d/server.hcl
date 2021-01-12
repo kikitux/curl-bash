@@ -25,4 +25,4 @@ seal "transit" {
 cluster_name = "primary"
 disable_mlock = true
 api_addr="http://0.0.0.0:8200"
-cluster_addr="http://0.0.0.0:8201"
+cluster_addr="https://0.0.0.0:8201"
