@@ -35,6 +35,10 @@ if [ "${cluster_name}" ]; then
   sed -i -e "s/primary/${cluster_name}/g" /etc/vault.d/server.hcl	
 fi
 
+if [ "${key_name}" ]; then
+  sed -i -e "s/unseal_key/${key_name}/g" /etc/vault.d/server.hcl	
+fi
+
 systemctl enable vault.service
 systemctl start vault.service 2>/dev/null
 
