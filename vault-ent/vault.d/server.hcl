@@ -4,13 +4,18 @@ storage "consul" {
   service_address = "" 
 }
 
+service_registration "consul" {
+  address         = "127.0.0.1:8500"
+  service_address = "" 
+}
+
 telemetry {
   prometheus_retention_time = "30s",
-  disable_hostname = true
+  disable_hostname          = true
 }
 
 listener "tcp" {
-  address = "0.0.0.0:8200"
+  address     = "0.0.0.0:8200"
   tls_disable = true
 }
 
