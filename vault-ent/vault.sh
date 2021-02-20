@@ -28,6 +28,22 @@ which vault &>/dev/null || {
 mkdir -p /etc/vault.d
 #download server configuration
 curl -sL -o /etc/vault.d/server.hcl https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-ent/vault.d/server.hcl
+
+# configure storage backend
+if [ "${storage}" ]; then
+  cat >/etc/vault.d/storage.hcl <<EOF
+${storage}
+EOF
+else
+  cat >/etc/vault.d/storage.hcl <<EOF
+storage "consul" {
+  address         = "127.0.0.1:8500"
+  path            = "vault"
+  service_address = "" 
+}
+EOF
+fi
+
 #download systemd service
 curl -sL -o /etc/systemd/system/vault.service https://raw.githubusercontent.com/kikitux/curl-bash/master/vault-ent/vault.service
 
