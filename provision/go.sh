@@ -22,6 +22,7 @@ which go || {
   
   grep 'GOROOT' ${PROFILE} &>/dev/null || {
     mkdir -p ${BASE}/go
+    chown -R ${SUDO_USER}: ${BASE}/go
     [ -f ${PROFILE} ] && cp ${PROFILE} ${PROFILE}.ori
     grep -v 'GOPATH|GOROOT' ${PROFILE}.ori | sudo tee -a ${PROFILE}
     echo 'export GOROOT=/snap/go/current' | sudo tee -a ${PROFILE}
