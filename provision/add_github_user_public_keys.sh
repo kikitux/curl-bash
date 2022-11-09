@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# curl -sL https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/add_github_user_public_keys.sh | GITHUB_USER=kikitux bash
+
 if [ ! "${GITHUB_USER}" ]; then
   echo "warn: this script ${0} needs GITHUB_USER variable"
   echo "info: exiting without doing any change"
