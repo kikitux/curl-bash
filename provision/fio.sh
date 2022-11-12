@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# curl -sL https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/fio.sh | TEST_DIR=/var/tmp/fiotest sudo bash
+# curl -sL https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/fio.sh | TEST_DIR=/var/tmp/fiotest bash
 
 if [ "$1" ]; then
   TEST_DIR=$1
