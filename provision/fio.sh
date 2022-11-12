@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# curl -sL https://raw.githubusercontent.com/kikitux/curl-bash/master/provision/fio.sh | TEST_DIR=/var/tmp/fiotest sudo bash
+
 if [ "$1" ]; then
   TEST_DIR=$1
 else
@@ -13,8 +15,8 @@ if  [ $? -ne 0 ] ; then
 fi
 
 which fio || {
-   sudo apt-get update
-   sudo apt-get install -y fio
+   apt-get update
+   apt-get install -y fio
 }
 
 fio --name=read_throughput --directory=$TEST_DIR --numjobs=12 \
