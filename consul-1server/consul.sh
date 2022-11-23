@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# VARS
+# IFACE
+
+# curl -sL https://github.com/kikitux/curl-bash/raw/master/consul-1server/consul.sh | bash
+
+
 # download consul
 which consul &>/dev/null || {
   # check packages
