@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-
-
 which docker 2>/dev/null || {
 
   export DEBIAN_FRONTEND=noninteractive
@@ -33,5 +31,3 @@ EOF
   }
 
 }
-
-
