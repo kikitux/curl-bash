@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-export DEBIAN_FRONTEND=noninteractive
 
-docker version 2>/dev/null || {
 
+which docker 2>/dev/null || {
+
+  export DEBIAN_FRONTEND=noninteractive
   apt-get update
   apt-get install -y apt-transport-https ca-certificates curl software-properties-common
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
