@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# vars IFACE
+
+# curl -sL https://github.com/kikitux/curl-bash/raw/master/nomad-1server/nomad.sh | bash 
+
 # download nomad
 which nomad &>/dev/null || {
 
